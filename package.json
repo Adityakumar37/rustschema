@@ -1,23 +1,36 @@
 {
   "name": "rustschema",
-  "displayName": "rustschema",
-  "description": "JSON Schema validator powered by Rust ",
+  "displayName": "RustSchema",
+  "description": "JSON Schema validator powered by Rust and WebAssembly",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.125.0"
   },
   "categories": [
+    "Linters",
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:json"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "rustschema.helloWorld",
-        "title": "Hello World"
+        "command": "rustschema.validate",
+        "title": "RustSchema: Validate JSON against Schema"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "RustSchema",
+      "properties": {
+        "rustschema.schemaPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the JSON Schema file to validate against"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
